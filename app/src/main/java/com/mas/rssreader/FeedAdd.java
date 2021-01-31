@@ -1,5 +1,6 @@
 package com.mas.rssreader;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +24,11 @@ public class FeedAdd extends AppCompatActivity {
         save = findViewById(R.id.add);
 
         save.setOnClickListener(v -> {
-
+            Intent i = new Intent();
+            i.putExtra(SiteDBHandler.KEY_NAME, name.getText().toString());
+            i.putExtra(SiteDBHandler.KEY_URL, url.getText().toString());
+            setResult(RESULT_OK, i);
+            finish();
         });
     }
 }

@@ -7,13 +7,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private Context c;
-    private SiteDBHandler sites;
+    //private Context c;
+    private final SiteDBHandler sites;
 
     public FeedAdapter(Context context, SiteDBHandler sites) {
-        this.c = context;
         this.sites = sites;
     }
 
@@ -26,7 +27,8 @@ public class FeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((FeedItem) holder).fill(sites.getSite(position + 1));
+        List<Site> items = sites.getAllSites();
+        ((FeedItem) holder).fill(items.get(position), sites);
     }
 
     @Override

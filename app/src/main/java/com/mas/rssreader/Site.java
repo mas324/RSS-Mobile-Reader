@@ -4,13 +4,14 @@ import androidx.annotation.NonNull;
 
 public class Site {
 
-    private int id;
+    private final int id;
     private String url;
     private final String name;
 
     public Site(String name, String url) {
         this.name = name;
         this.url = url;
+        id = 0;
     }
 
     public Site(String name, String url, int id) {

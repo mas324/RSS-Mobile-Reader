@@ -11,26 +11,29 @@ public class FeedItem extends RecyclerView.ViewHolder {
 
     private final FeedAdapter feedAdapter;
     private ImageView imageView;
-    private ConstraintLayout layout;
-    private TextView name;
-    private TextView description;
-    private TextView index;
+    private final ConstraintLayout layout;
+    private final TextView name;
+    private final TextView description;
 
     public FeedItem(FeedAdapter adapter, View view) {
         super(view);
         layout = view.findViewById(R.id.feedItem);
         name = view.findViewById(R.id.feedName);
         description = view.findViewById(R.id.feedDescription);
-        index = view.findViewById(R.id.feedNumber);
         feedAdapter = adapter;
     }
 
-    public void fill(final Site site) {
+    public void fill(final Site site, SiteDBHandler handler) {
         name.setText(site.getName());
         description.setText(site.getUrl());
-        index.setText(String.valueOf(site.getId()));
         layout.setOnLongClickListener(v -> {
+            handler.deleteSite(site.getId());
+            feedAdapter.notifyItemRemoved(getAdapterPosition());
             return true;
+        });
+
+        layout.setOnClickListener(v -> {
+
         });
     }
 }

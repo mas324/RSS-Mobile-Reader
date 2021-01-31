@@ -14,12 +14,12 @@ import java.util.List;
 
 public class SiteDBHandler extends SQLiteOpenHelper {
 
-    private static final int DB_V = 3;
+    public static final String KEY_URL = "url";
+    public static final String KEY_NAME = "name";
+    private static final int DB_V = 4;
     private static final String DB_NAME = "sitesManager";
     private static final String TABLE_SITES = "sites";
     private static final String KEY_ID = "id";
-    private static final String KEY_URL = "url";
-    private static final String KEY_NAME = "name";
 
     public SiteDBHandler(Context context) {
         super(context, DB_NAME, null, DB_V);
@@ -96,6 +96,17 @@ public class SiteDBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_SITES, KEY_ID + " =?", new String[]{String.valueOf(site.getId())});
         db.close();
+    }
+
+    public void deleteSite(int i) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_SITES, KEY_ID + " =?", new String[]{String.valueOf(i)});
+        db.close();
+    }
+
+    public void deleteSite(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_SITES, KEY_NAME + " =?", new String[]{name});
     }
 
     public int getSitesCount() {
