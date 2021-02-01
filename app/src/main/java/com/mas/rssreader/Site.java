@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 public class Site {
 
     private final int id;
-    private String url;
+    private final String url;
     private final String name;
 
     public Site(String name, String url) {
@@ -30,10 +30,6 @@ public class Site {
 
     public String getUrl() {
         return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     @NonNull

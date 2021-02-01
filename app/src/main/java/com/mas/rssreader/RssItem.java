@@ -14,6 +14,12 @@ public class RssItem {
         description = "description";
     }
 
+    public RssItem(String title, String description) {
+        this.title = title;
+        this.description = description;
+        this.link = "link";
+    }
+
     public RssItem(String title, String link, String description) {
         this.title = title;
         this.link = link;
@@ -42,5 +48,10 @@ public class RssItem {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("RssItem: [Title = %s, Description = %s]", title, description);
     }
 }
